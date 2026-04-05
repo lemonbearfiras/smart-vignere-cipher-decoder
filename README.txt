@@ -1,17 +1,27 @@
-# 🔐 Hybrid Vigenère Cipher Cracker
+🔐 Hybrid Vigenère Cipher Cracker
 
 A powerful Python tool for breaking **Vigenère ciphers** using a mix of:
-
-* 📖 Dictionary-based key search
-* 📊 Frequency analysis (chi-squared scoring)
-* 🔤 N-gram scoring (bigrams & trigrams)
-* 🧠 Grammar and word detection heuristics
+- 📖 Dictionary-based key search  
+- 📊 Frequency analysis (chi-squared scoring)  
+- 🔤 N-gram scoring (bigrams & trigrams)  
+- 🧠 Grammar and word detection heuristics  
 
 It ranks possible decryptions and returns the most **English-like plaintext**.
 
----
+ ⚙️ Features
+- Supports **known and unknown key lengths**
+- Smart scoring using **English frequency + grammar rules**
+- Handles **short ciphertexts** with fallback frequency attacks
+- Multiple output formats: **text, JSON, CSV**
+- Interactive mode for easy usage
 
-## ⚙️ Features
+ 🚀 Usage
+
+ ▶️ Basic (unknown key length)
+```bash
+python script.py "CIPHERTEXT"
+
+ ⚙️ Features
 
 * Supports **known and unknown key lengths**
 * Smart scoring using **English frequency + grammar rules**
@@ -19,98 +29,55 @@ It ranks possible decryptions and returns the most **English-like plaintext**.
 * Multiple output formats: **text, JSON, CSV**
 * Interactive mode for easy usage
 
----
+ 🚀 Usage
 
-## 🚀 Usage
+ ▶️ Basic (unknown key length)
 
-### ▶️ Basic (unknown key length)
-
-```bash
 python script.py "CIPHERTEXT"
-```
 
----
+ 🎯 Specify key length
 
-### 🎯 Specify key length
-
-```bash
 python script.py "CIPHERTEXT" --key-length 5
-```
 
----
+ ⚡ Limit key length range
 
-### ⚡ Limit key length range
-
-```bash
 python script.py "CIPHERTEXT" --min-key-length 3 --max-key-length 10
-```
 
----
+ 🔍 Show top results
 
-### 🔍 Show top results
-
-```bash
 python script.py "CIPHERTEXT" --top 10
-```
 
----
+ 🧠 More accurate (recommended)
 
-### 🧠 More accurate (recommended)
-
-```bash
 python script.py "CIPHERTEXT" \
 --min-key-length 3 \
 --max-key-length 10 \
 --prefilter-limit 400 \
 --top 10 \
 --explain-top 3
-```
 
----
+ 📊 JSON output
 
-### 📊 JSON output
-
-```bash
 python script.py "CIPHERTEXT" --json
-```
 
----
+ 📄 Save results to file
 
-### 📄 Save results to file
-
-```bash
 python script.py "CIPHERTEXT" --output results.txt
-```
 
----
+ 📈 Export to CSV
 
-### 📈 Export to CSV
-
-```bash
 python script.py "CIPHERTEXT" --csv results.csv
-```
 
----
+ 🤫 Quiet mode (best plaintext only)
 
-### 🤫 Quiet mode (best plaintext only)
-
-```bash
 python script.py "CIPHERTEXT" --quiet
-```
 
----
+ 🧪 Interactive mode
 
-### 🧪 Interactive mode
-
-```bash
 python script.py --interactive
-```
 
----
+ 🛠️ Command Options
 
-## 🛠️ Command Options
-
-```
 --key-length = exact key length to use  
 --min-key-length = minimum key length to try  
 --max-key-length = maximum key length to try  
@@ -129,26 +96,16 @@ python script.py --interactive
 --explain-top = explain top N results  
 --summary-only = show only summary  
 --explain-all = explain all results  
-```
 
----
+ 📌 Example
 
-## 📌 Example
-
-```bash
 python script.py "LXFOPVEFRNHR"
-```
 
 Output:
-
-```
 Best key: LEMON  
 Decrypted text: ATTACK AT DAWN
-```
 
----
-
-## 🧠 How it Works
+ 🧠 How it Works
 
 1. Generates candidate keys from a dictionary
 2. Uses frequency analysis to rank likely decryptions
@@ -160,24 +117,18 @@ Decrypted text: ATTACK AT DAWN
    * n-gram patterns
 4. Returns the highest scoring result
 
----
-
-## 📂 Requirements
+ 📂 Requirements
 
 * Python 3.x
 * No external libraries required
 
----
-
-## 🏁 Notes
+ 🏁 Notes
 
 * Works best with **English plaintext**
 * Short ciphertexts use **extra heuristics**
 * Results are ranked — always check top candidates
 
----
-
-## ⭐
+ ⭐
 
 If you find this useful, consider starring the repo!
 
