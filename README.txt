@@ -1,18 +1,183 @@
---key-length = exact key length to use (e.g. 5)
---min-key-length = minimum key length to try (when unknown)
---max-key-length = maximum key length to try (when unknown)
---dictionary = path to dictionary file (e.g. words.txt)
---top = number of top results to display (default 10)
---prefilter-limit = how many candidates pass first filtering (default 250)
---max-words = limit number of dictionary words tested
---output = save full output to a text file
---interactive = run in prompt mode (asks inputs step-by-step)
---short-cipher-mode = on/off for extra frequency tricks (default on)
---json = output results in JSON format
---best-only-json = output only best result as compact JSON
---json-pretty = on/off for formatted JSON (default on)
---csv = save top results to CSV file
---quiet = print only best decrypted text
---explain-top = show detailed explanation for top N results
---summary-only = show only short summary of best result
---explain-all = show detailed explanation for all shown results
+# 🔐 Hybrid Vigenère Cipher Cracker
+
+A powerful Python tool for breaking **Vigenère ciphers** using a mix of:
+
+* 📖 Dictionary-based key search
+* 📊 Frequency analysis (chi-squared scoring)
+* 🔤 N-gram scoring (bigrams & trigrams)
+* 🧠 Grammar and word detection heuristics
+
+It ranks possible decryptions and returns the most **English-like plaintext**.
+
+---
+
+## ⚙️ Features
+
+* Supports **known and unknown key lengths**
+* Smart scoring using **English frequency + grammar rules**
+* Handles **short ciphertexts** with fallback frequency attacks
+* Multiple output formats: **text, JSON, CSV**
+* Interactive mode for easy usage
+
+---
+
+## 🚀 Usage
+
+### ▶️ Basic (unknown key length)
+
+```bash
+python script.py "CIPHERTEXT"
+```
+
+---
+
+### 🎯 Specify key length
+
+```bash
+python script.py "CIPHERTEXT" --key-length 5
+```
+
+---
+
+### ⚡ Limit key length range
+
+```bash
+python script.py "CIPHERTEXT" --min-key-length 3 --max-key-length 10
+```
+
+---
+
+### 🔍 Show top results
+
+```bash
+python script.py "CIPHERTEXT" --top 10
+```
+
+---
+
+### 🧠 More accurate (recommended)
+
+```bash
+python script.py "CIPHERTEXT" \
+--min-key-length 3 \
+--max-key-length 10 \
+--prefilter-limit 400 \
+--top 10 \
+--explain-top 3
+```
+
+---
+
+### 📊 JSON output
+
+```bash
+python script.py "CIPHERTEXT" --json
+```
+
+---
+
+### 📄 Save results to file
+
+```bash
+python script.py "CIPHERTEXT" --output results.txt
+```
+
+---
+
+### 📈 Export to CSV
+
+```bash
+python script.py "CIPHERTEXT" --csv results.csv
+```
+
+---
+
+### 🤫 Quiet mode (best plaintext only)
+
+```bash
+python script.py "CIPHERTEXT" --quiet
+```
+
+---
+
+### 🧪 Interactive mode
+
+```bash
+python script.py --interactive
+```
+
+---
+
+## 🛠️ Command Options
+
+```
+--key-length = exact key length to use  
+--min-key-length = minimum key length to try  
+--max-key-length = maximum key length to try  
+--dictionary = path to dictionary file  
+--top = number of results to display  
+--prefilter-limit = candidates kept after first filtering  
+--max-words = limit dictionary words tested  
+--output = save output to file  
+--interactive = run in interactive mode  
+--short-cipher-mode = on/off for short text optimization  
+--json = output in JSON format  
+--best-only-json = output only best result (JSON)  
+--json-pretty = pretty JSON formatting  
+--csv = export results to CSV  
+--quiet = print only best plaintext  
+--explain-top = explain top N results  
+--summary-only = show only summary  
+--explain-all = explain all results  
+```
+
+---
+
+## 📌 Example
+
+```bash
+python script.py "LXFOPVEFRNHR"
+```
+
+Output:
+
+```
+Best key: LEMON  
+Decrypted text: ATTACK AT DAWN
+```
+
+---
+
+## 🧠 How it Works
+
+1. Generates candidate keys from a dictionary
+2. Uses frequency analysis to rank likely decryptions
+3. Scores plaintext using:
+
+   * English letter frequency
+   * word matching
+   * grammar heuristics
+   * n-gram patterns
+4. Returns the highest scoring result
+
+---
+
+## 📂 Requirements
+
+* Python 3.x
+* No external libraries required
+
+---
+
+## 🏁 Notes
+
+* Works best with **English plaintext**
+* Short ciphertexts use **extra heuristics**
+* Results are ranked — always check top candidates
+
+---
+
+## ⭐
+
+If you find this useful, consider starring the repo!
+
